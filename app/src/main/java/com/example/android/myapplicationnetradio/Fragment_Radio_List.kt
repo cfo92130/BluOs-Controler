@@ -17,41 +17,45 @@
 package com.example.android.myapplicationnetradio
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 
-class RecyclerViewFragment : androidx.fragment.app.Fragment() {
+class Fragment_Radio_List : androidx.fragment.app.Fragment() {
 
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
-    private lateinit var dataset: List<Radio>
-    private val listType = Types.newParameterizedType( List::class.java, Radio::class.java)
+    // private lateinit var dataset: List<Radio>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initDataset()
+
+        val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        initDataset(viewModel)
     }
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.recycler_view_frag,
+        val rootView = inflater.inflate(R.layout.fragment_radio_list,
                 container, false).apply { tag = TAG}
 
         recyclerView = rootView.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, SPAN_COUNT)
-        recyclerView.adapter = CustomAdapter(dataset)
+        val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        recyclerView.adapter = CustomAdapter(viewModel.dataset, viewModel)
+
         return rootView
     }
 
-    private fun initDataset() {
+    private fun initDataset(viewModel: MainViewModel ) {
 
-        var radios : String
+        val listType = Types.newParameterizedType( List::class.java, Radio::class.java)
+
+        val radios : String
         radios = this.context?.assets?.open("RadioList.json").use {
             it!!.bufferedReader().use {
                 it.readText()
@@ -60,9 +64,9 @@ class RecyclerViewFragment : androidx.fragment.app.Fragment() {
         println("My Radio List :"+ radios.toString())
         val moshi = Moshi.Builder().build()
         val adapter: JsonAdapter<List<Radio>> = moshi.adapter(listType)
-        dataset = adapter.fromJson(radios)!!
+        viewModel.dataset = adapter.fromJson(radios)!!
 
-        for ( radio in dataset ) {
+        for ( radio in viewModel.dataset ) {
             println("Radio:"+radio.title+" WebUrl:"+radio.websiteUrl+" URI:"+ radio.sources[0])
         }
     }
@@ -72,3 +76,4 @@ class RecyclerViewFragment : androidx.fragment.app.Fragment() {
         private val SPAN_COUNT = 3
     }
 }
+

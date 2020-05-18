@@ -27,8 +27,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.core.widget.TextViewCompat
-import com.example.android.myapplicationnetradio.R
-import com.example.android.myapplicationnetradio.RecyclerViewFragment
 
 /**
  * Simple fragment which contains a LogView and uses is to output log data it receives

@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.ViewAnimator
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.common.activities.SampleActivityBase
@@ -29,6 +30,7 @@ import com.example.android.common.logger.LogFragment
 import com.example.android.common.logger.LogWrapper
 import com.example.android.common.logger.MessageOnlyLogFilter
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_radio.*
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
@@ -39,14 +41,12 @@ import com.google.android.material.tabs.TabLayout
  * on other devices it's visibility is controlled by an item on the Action Bar.
  */
 
-class Radio (
-        val title : String,
-        val websiteUrl : String,
-        val sources : List<String>
-)
+
+
 
 class MainActivity : SampleActivityBase() {
-    
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -81,7 +81,6 @@ class MainActivity : SampleActivityBase() {
     }
 
 
-
     /** Create a chain of targets that will receive log data  */
     override fun initializeLogging() {
         // Wraps Android's native log framework.
@@ -89,21 +88,21 @@ class MainActivity : SampleActivityBase() {
 
         // Using Log, front-end to the logging chain, emulates android.util.log method signatures.
         Log.logNode = logWrapper
-
         // Filter strips out everything except the message text.
         val msgFilter = MessageOnlyLogFilter()
         logWrapper.next = msgFilter
 
         // On screen logging via a fragment with a TextView.
-
         val logFragment = supportFragmentManager.findFragmentById(R.id.log_fragment) as LogFragment
         msgFilter.next = logFragment.logView
 
         Log.i(TAG, "Ready")
+
     }
 
     companion object {
         val TAG = "MainActivity"
         var CurrentSelectView : View? = null
+        var SelectedRadio = 0
     }
 }
