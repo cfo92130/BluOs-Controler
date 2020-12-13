@@ -1,5 +1,444 @@
 [
   {
+  "id": "user:e226ccc5-9d93-4193-b262-b0edd3e75ff6",
+  "title": "Linn Jazz 320",
+  "websiteUrl": "https://www.linn.co.uk/linn-radio",
+  "tags": [
+    "UK"
+  ],
+  "sources": [
+    "http://89.16.185.174:8000/stream"
+  ]
+},
+  {
+    "id": "user:e226ccc5-9d93-4193-b262-b0edd3e75ff6",
+    "title": "Radio paradise flac",
+    "websiteUrl": "https://radioparadise.com/",
+    "tags": [
+      "USA"
+    ],
+    "sources": [
+      "http://stream.radioparadise.com/flac"
+    ]
+  },
+  {
+    "id": "user:e226ccc5-9d93-4193-b262-b0edd3e75ff6",
+    "title": "Radio paradise mp3 192 ",
+    "websiteUrl": "https://radioparadise.com/",
+    "tags": [
+      "USA"
+    ],
+    "sources": [
+      "http://stream.radioparadise.com/mp3-192"
+    ]
+  },
+  {
+    "id": "user:8cd4ef17-dc64-445c-a4dc-213cbb9186ab",
+    "title": "FR | France Culture",
+    "websiteUrl": "http://www.franceculture.fr/",
+    "tags": [
+      "Radio France",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://direct.franceculture.fr/live/franceculture-midfi.mp3"
+    ]
+  },
+  {
+    "id": "user:34289719-dd42-41cd-a2b1-d74e234e73e7",
+    "title": "FR | France Info",
+    "websiteUrl": "http://www.franceinfo.fr/",
+    "tags": [
+      "Radio France",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://direct.franceinfo.fr/live/franceinfo-midfi.mp3"
+    ]
+  },
+  {
+    "id": "user:78ac48c3-ff28-4369-8208-1f8bdbab24ed",
+    "title": "FR | France Inter",
+    "websiteUrl": "http://www.franceinter.fr/",
+    "tags": [
+      "Radio France",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://direct.franceinter.fr/live/franceinter-midfi.mp3"
+    ]
+  },
+  {
+    "id": "user:c1c39bcd-9f36-4f90-8cd2-968512a198d7",
+    "title": "FR | France Musique",
+    "websiteUrl": "http://www.francemusique.fr/",
+    "tags": [
+      "Radio France",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://direct.francemusique.fr/live/francemusique-midfi.mp3"
+    ]
+  },
+  {
+    "id": "user:88bd9586-e277-44e8-a5cd-e4faabdd63f2",
+    "title": "FR | Mouv'",
+    "websiteUrl": "http://www.lemouv.fr/",
+    "tags": [
+      "Radio France",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://direct.mouv.fr/live/mouv-midfi.mp3"
+    ]
+  },
+  {
+    "id": "user:e065e7ba-4936-4fd9-8327-340d38616919",
+    "title": "FR | Fip",
+    "websiteUrl": "http://www.fipradio.fr/",
+    "tags": [
+      "Radio France",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://direct.fipradio.fr/live/fip-midfi.mp3"
+    ]
+  },{
+  "id": "user:e065e7ba-4936-4fd9-8327-340d38616919",
+  "title": "FR | Fip Jazz mp3",
+  "websiteUrl": "https://www.fip.fr/jazz/webradio",
+  "tags": [
+    "Radio France",
+    "France - Nationale"
+  ],
+  "sources": [
+    "http://direct.fipradio.fr/live/fipjazz-midfi.mp3"
+  ]
+},{
+  "id": "user:e065e7ba-4936-4fd9-8327-340d38616919",
+  "title": "FR | Fip Jazz aac ",
+  "websiteUrl": "https://www.fip.fr/jazz/webradio",
+  "tags": [
+    "Radio France",
+    "France - Nationale"
+  ],
+  "sources": [
+    "http://direct.fipradio.fr/live/fipjazz-hifi.aac"
+  ]
+},{
+  "id": "user:e065e7ba-4936-4fd9-8327-340d38616919",
+  "title": "FR | Fip Jazz hls",
+  "websiteUrl": "https://www.fip.fr/jazz/webradio",
+  "tags": [
+    "Radio France",
+    "France - Nationale"
+  ],
+  "sources": [
+    "https://stream.radiofrance.fr/fipjazz/fipjazz.m3u8"
+  ]
+},
+  {
+    "id": "user:8d39d8e0-c154-4bee-bf6d-f6df0c1cc3dd",
+    "title": "FR | Chérie FM",
+    "websiteUrl": "http://www.cheriefm.fr/",
+    "tags": [
+      "NRJ Group",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://cdn.nrjaudio.fm/audio1/fr/30201/mp3_128.mp3?origine=fluxradios"
+    ]
+  },
+  {
+    "id": "user:c581f38d-a1ae-4cba-ada8-403c47ad5eb3",
+    "title": "FR | NRJ",
+    "websiteUrl": "http://www.nrj.fr/",
+    "tags": [
+      "NRJ Group",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios"
+    ]
+  },
+  {
+    "id": "user:868df2e5-9599-46e1-a605-55295c495014",
+    "title": "FR | Nostalgie",
+    "websiteUrl": "http://www.nostalgie.fr/",
+    "tags": [
+      "NRJ Group",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://cdn.nrjaudio.fm/audio1/fr/30601/mp3_128.mp3?origine=fluxradios"
+    ]
+  },
+  {
+    "id": "user:952edc87-2da1-4cb4-a98d-039d7d3838a6",
+    "title": "FR | Rire & Chansons",
+    "websiteUrl": "http://www.rireetchansons.fr/",
+    "tags": [
+      "NRJ Group",
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://cdn.nrjaudio.fm/audio1/fr/30401/mp3_128.mp3?origine=fluxradios"
+    ]
+  },
+  {
+    "id": "user:5f4d9328-9390-4b48-8194-5193104f19fb",
+    "title": "FR | Europe 1",
+    "websiteUrl": "http://www.europe1.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://mp3lg4.tdf-cdn.com/9240/lag_180945.mp3"
+    ]
+  },
+  {
+    "id": "user:710a47d8-0cad-44ac-9180-1430eada259e",
+    "title": "FR | France Maghreb 2",
+    "websiteUrl": "http://francemaghreb2.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3"
+    ]
+  },
+  {
+    "id": "user:5f58feef-fd08-4248-934b-a94eb5583c91",
+    "title": "FR | Fun Radio",
+    "websiteUrl": "http://www.funradio.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://streaming.radio.funradio.fr/fun-1-48-192"
+    ]
+  },
+  {
+    "id": "user:68aa7bbd-a6bb-4445-b7c7-5d15071a48c1",
+    "title": "FR | Jazz Radio",
+    "websiteUrl": "http://www.jazzradio.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3"
+    ]
+  },
+  {
+    "id": "user:3086402a-ad8a-4e14-90da-e519c94b986d",
+    "title": "FR | Latina",
+    "websiteUrl": "http://www.latina.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://start-latina.ice.infomaniak.ch/start-latina-high.mp3"
+    ]
+  },
+  {
+    "id": "user:4d9ec997-400c-4fd5-804a-4105ccadbfd9",
+    "title": "FR | M Radio",
+    "websiteUrl": "http://mradio.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://mfm.ice.infomaniak.ch/mfm-128.mp3"
+    ]
+  },
+  {
+    "id": "user:591f4297-33d1-437a-9209-c82edbc04a85",
+    "title": "FR | Ouï FM",
+    "websiteUrl": "http://www.ouifm.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://ouifm.ice.infomaniak.ch/ouifm-high.mp3"
+    ]
+  },
+  {
+    "id": "user:5e14e5d6-3ac6-46c4-85ae-2d71c78ea7bf",
+    "title": "FR | Phare FM",
+    "websiteUrl": "http://pharefm.com/site/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://str0.creacast.com/pharefm"
+    ]
+  },
+  {
+    "id": "user:0b118198-67ef-4c08-8e68-9bf376652838",
+    "title": "FR | R.C.F.",
+    "websiteUrl": "https://rcf.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://rcf.streamakaci.com/rcf.mp3"
+    ]
+  },
+  {
+    "id": "user:f548aa08-7432-4ec9-947b-d0236aa4f0fd",
+    "title": "FR | Radio Classique",
+    "websiteUrl": "http://www.radioclassique.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3"
+    ]
+  },
+  {
+    "id": "user:4f7687bc-075f-4523-b934-690a973f4c3f",
+    "title": "FR | Radio Crooner",
+    "websiteUrl": "http://www.crooner.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://stream.crooner.fr/crooner_hd"
+    ]
+  },
+  {
+    "id": "user:45f3ea08-bb34-4ae0-a827-bc474613cc59",
+    "title": "FR | Radio FG",
+    "websiteUrl": "http://www.radiofg.com/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://radiofg.impek.com/fg"
+    ]
+  },
+  {
+    "id": "user:edd9e1df-3ef6-442a-b9dd-2342d5913c8a",
+    "title": "FR | Radio Nova",
+    "websiteUrl": "http://www.nova.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://novazz.ice.infomaniak.ch/novazz-128.mp3"
+    ]
+  },
+  {
+    "id": "user:225ace1d-e01c-49ca-9d30-02103a77a029",
+    "title": "FR | Radio Orient",
+    "websiteUrl": "http://www.radioorient.com/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://stream3.broadcast-associes.com:8405/Radio-Orient"
+    ]
+  },
+  {
+    "id": "user:e3c16fdf-3471-4905-8924-f1abd9487649",
+    "title": "FR | RFI (Radio France Internationale)",
+    "websiteUrl": "http://www.rfi.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://live02.rfi.fr/rfimonde-96k.mp3"
+    ]
+  },
+  {
+    "id": "user:90ce201d-55a5-4b69-ad9a-7d86248795e2",
+    "title": "FR | RFM",
+    "websiteUrl": "http://www.rfm.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://rfm-live-mp3-128.scdn.arkena.com/rfm.mp3"
+    ]
+  },
+  {
+    "id": "user:887a20b1-4e25-4a85-9b3d-f6c7287d1b95",
+    "title": "FR | RMC",
+    "websiteUrl": "http://rmc.bfmtv.com/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://chai5she.cdn.dvmr.fr/rmcinfo"
+    ]
+  },
+  {
+    "id": "user:ca54ac55-397b-41f8-b7e2-dc001d0089b8",
+    "title": "FR | RTL",
+    "websiteUrl": "http://www.rtl.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://streaming.radio.rtl.fr/rtl-1-48-192"
+    ]
+  },
+  {
+    "id": "user:9d653032-dc3d-45e7-95e9-98a4be900194",
+    "title": "FR | RTL2",
+    "websiteUrl": "http://www.rtl2.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://streaming.radio.rtl2.fr/rtl2-1-48-192"
+    ]
+  },
+  {
+    "id": "user:225f47b1-a819-4979-a4ef-ee3eb5e0fca3",
+    "title": "FR | Skyrock",
+    "websiteUrl": "http://skyrock.fm/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://icecast.skyrock.net/s/natio_mp3_128k"
+    ]
+  },
+  {
+    "id": "user:24f9c73c-a7b0-4ff6-b343-474ab448e9a6",
+    "title": "FR | Sud Radio",
+    "websiteUrl": "http://www.sudradio.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://start-sud.ice.infomaniak.ch/start-sud-high.mp3"
+    ]
+  },
+  {
+    "id": "user:b283b5fd-9ae3-4643-9a26-edea9e237ddb",
+    "title": "FR | TSF Jazz",
+    "websiteUrl": "http://www.tsfjazz.com/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3"
+    ]
+  },
+  {
+    "id": "user:c88f401c-c8a1-44c6-bd54-a450fdb2cb1a",
+    "title": "FR | Virgin Radio",
+    "websiteUrl": "http://www.virginradio.fr/",
+    "tags": [
+      "France - Nationale"
+    ],
+    "sources": [
+      "http://vr-live-mp3-128.scdn.arkena.com/virginradio.mp3"
+    ]
+  },
+  {
     "id": "user:e226ccb5-9d93-4193-b262-b0edd3e75ff6",
     "title": "BE | Bel-RTL ",
     "websiteUrl": "https://www.rtl.be/belrtl/index-bel-rtl.htm",
@@ -360,259 +799,6 @@
     ],
     "sources": [
       "http://stream.run.be:8000/run128.mp3"
-    ]
-  },
-  {
-    "id": "user:5f4d9328-9390-4b48-8194-5193104f19fb",
-    "title": "FR | Europe 1",
-    "websiteUrl": "http://www.europe1.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://mp3lg4.tdf-cdn.com/9240/lag_180945.mp3"
-    ]
-  },
-  {
-    "id": "user:710a47d8-0cad-44ac-9180-1430eada259e",
-    "title": "FR | France Maghreb 2",
-    "websiteUrl": "http://francemaghreb2.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3"
-    ]
-  },
-  {
-    "id": "user:5f58feef-fd08-4248-934b-a94eb5583c91",
-    "title": "FR | Fun Radio",
-    "websiteUrl": "http://www.funradio.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://streaming.radio.funradio.fr/fun-1-48-192"
-    ]
-  },
-  {
-    "id": "user:68aa7bbd-a6bb-4445-b7c7-5d15071a48c1",
-    "title": "FR | Jazz Radio",
-    "websiteUrl": "http://www.jazzradio.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3"
-    ]
-  },
-  {
-    "id": "user:3086402a-ad8a-4e14-90da-e519c94b986d",
-    "title": "FR | Latina",
-    "websiteUrl": "http://www.latina.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://start-latina.ice.infomaniak.ch/start-latina-high.mp3"
-    ]
-  },
-  {
-    "id": "user:4d9ec997-400c-4fd5-804a-4105ccadbfd9",
-    "title": "FR | M Radio",
-    "websiteUrl": "http://mradio.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://mfm.ice.infomaniak.ch/mfm-128.mp3"
-    ]
-  },
-  {
-    "id": "user:591f4297-33d1-437a-9209-c82edbc04a85",
-    "title": "FR | Ouï FM",
-    "websiteUrl": "http://www.ouifm.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://ouifm.ice.infomaniak.ch/ouifm-high.mp3"
-    ]
-  },
-  {
-    "id": "user:5e14e5d6-3ac6-46c4-85ae-2d71c78ea7bf",
-    "title": "FR | Phare FM",
-    "websiteUrl": "http://pharefm.com/site/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://str0.creacast.com/pharefm"
-    ]
-  },
-  {
-    "id": "user:0b118198-67ef-4c08-8e68-9bf376652838",
-    "title": "FR | R.C.F.",
-    "websiteUrl": "https://rcf.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://rcf.streamakaci.com/rcf.mp3"
-    ]
-  },
-  {
-    "id": "user:f548aa08-7432-4ec9-947b-d0236aa4f0fd",
-    "title": "FR | Radio Classique",
-    "websiteUrl": "http://www.radioclassique.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3"
-    ]
-  },
-  {
-    "id": "user:4f7687bc-075f-4523-b934-690a973f4c3f",
-    "title": "FR | Radio Crooner",
-    "websiteUrl": "http://www.crooner.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://stream.crooner.fr/crooner_hd"
-    ]
-  },
-  {
-    "id": "user:45f3ea08-bb34-4ae0-a827-bc474613cc59",
-    "title": "FR | Radio FG",
-    "websiteUrl": "http://www.radiofg.com/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://radiofg.impek.com/fg"
-    ]
-  },
-  {
-    "id": "user:edd9e1df-3ef6-442a-b9dd-2342d5913c8a",
-    "title": "FR | Radio Nova",
-    "websiteUrl": "http://www.nova.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://novazz.ice.infomaniak.ch/novazz-128.mp3"
-    ]
-  },
-  {
-    "id": "user:225ace1d-e01c-49ca-9d30-02103a77a029",
-    "title": "FR | Radio Orient",
-    "websiteUrl": "http://www.radioorient.com/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://stream3.broadcast-associes.com:8405/Radio-Orient"
-    ]
-  },
-  {
-    "id": "user:e3c16fdf-3471-4905-8924-f1abd9487649",
-    "title": "FR | RFI (Radio France Internationale)",
-    "websiteUrl": "http://www.rfi.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://live02.rfi.fr/rfimonde-96k.mp3"
-    ]
-  },
-  {
-    "id": "user:90ce201d-55a5-4b69-ad9a-7d86248795e2",
-    "title": "FR | RFM",
-    "websiteUrl": "http://www.rfm.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://rfm-live-mp3-128.scdn.arkena.com/rfm.mp3"
-    ]
-  },
-  {
-    "id": "user:887a20b1-4e25-4a85-9b3d-f6c7287d1b95",
-    "title": "FR | RMC",
-    "websiteUrl": "http://rmc.bfmtv.com/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://chai5she.cdn.dvmr.fr/rmcinfo"
-    ]
-  },
-  {
-    "id": "user:ca54ac55-397b-41f8-b7e2-dc001d0089b8",
-    "title": "FR | RTL",
-    "websiteUrl": "http://www.rtl.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://streaming.radio.rtl.fr/rtl-1-48-192"
-    ]
-  },
-  {
-    "id": "user:9d653032-dc3d-45e7-95e9-98a4be900194",
-    "title": "FR | RTL2",
-    "websiteUrl": "http://www.rtl2.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://streaming.radio.rtl2.fr/rtl2-1-48-192"
-    ]
-  },
-  {
-    "id": "user:225f47b1-a819-4979-a4ef-ee3eb5e0fca3",
-    "title": "FR | Skyrock",
-    "websiteUrl": "http://skyrock.fm/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://icecast.skyrock.net/s/natio_mp3_128k"
-    ]
-  },
-  {
-    "id": "user:24f9c73c-a7b0-4ff6-b343-474ab448e9a6",
-    "title": "FR | Sud Radio",
-    "websiteUrl": "http://www.sudradio.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://start-sud.ice.infomaniak.ch/start-sud-high.mp3"
-    ]
-  },
-  {
-    "id": "user:b283b5fd-9ae3-4643-9a26-edea9e237ddb",
-    "title": "FR | TSF Jazz",
-    "websiteUrl": "http://www.tsfjazz.com/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3"
-    ]
-  },
-  {
-    "id": "user:c88f401c-c8a1-44c6-bd54-a450fdb2cb1a",
-    "title": "FR | Virgin Radio",
-    "websiteUrl": "http://www.virginradio.fr/",
-    "tags": [
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://vr-live-mp3-128.scdn.arkena.com/virginradio.mp3"
     ]
   },
   {
@@ -2018,126 +2204,7 @@
       "http://icecast.vrtcdn.be/stubru-high.mp3"
     ]
   },
-  {
-    "id": "user:8cd4ef17-dc64-445c-a4dc-213cbb9186ab",
-    "title": "FR | France Culture",
-    "websiteUrl": "http://www.franceculture.fr/",
-    "tags": [
-      "Radio France",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://direct.franceculture.fr/live/franceculture-midfi.mp3"
-    ]
-  },
-  {
-    "id": "user:34289719-dd42-41cd-a2b1-d74e234e73e7",
-    "title": "FR | France Info",
-    "websiteUrl": "http://www.franceinfo.fr/",
-    "tags": [
-      "Radio France",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://direct.franceinfo.fr/live/franceinfo-midfi.mp3"
-    ]
-  },
-  {
-    "id": "user:78ac48c3-ff28-4369-8208-1f8bdbab24ed",
-    "title": "FR | France Inter",
-    "websiteUrl": "http://www.franceinter.fr/",
-    "tags": [
-      "Radio France",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://direct.franceinter.fr/live/franceinter-midfi.mp3"
-    ]
-  },
-  {
-    "id": "user:c1c39bcd-9f36-4f90-8cd2-968512a198d7",
-    "title": "FR | France Musique",
-    "websiteUrl": "http://www.francemusique.fr/",
-    "tags": [
-      "Radio France",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://direct.francemusique.fr/live/francemusique-midfi.mp3"
-    ]
-  },
-  {
-    "id": "user:88bd9586-e277-44e8-a5cd-e4faabdd63f2",
-    "title": "FR | Mouv'",
-    "websiteUrl": "http://www.lemouv.fr/",
-    "tags": [
-      "Radio France",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://direct.mouv.fr/live/mouv-midfi.mp3"
-    ]
-  },
-  {
-    "id": "user:e065e7ba-4936-4fd9-8327-340d38616919",
-    "title": "FR | Fip",
-    "websiteUrl": "http://www.fipradio.fr/",
-    "tags": [
-      "Radio France",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://direct.fipradio.fr/live/fip-midfi.mp3"
-    ]
-  },
-  {
-    "id": "user:8d39d8e0-c154-4bee-bf6d-f6df0c1cc3dd",
-    "title": "FR | Chérie FM",
-    "websiteUrl": "http://www.cheriefm.fr/",
-    "tags": [
-      "NRJ Group",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://cdn.nrjaudio.fm/audio1/fr/30201/mp3_128.mp3?origine=fluxradios"
-    ]
-  },
-  {
-    "id": "user:c581f38d-a1ae-4cba-ada8-403c47ad5eb3",
-    "title": "FR | NRJ",
-    "websiteUrl": "http://www.nrj.fr/",
-    "tags": [
-      "NRJ Group",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios"
-    ]
-  },
-  {
-    "id": "user:868df2e5-9599-46e1-a605-55295c495014",
-    "title": "FR | Nostalgie",
-    "websiteUrl": "http://www.nostalgie.fr/",
-    "tags": [
-      "NRJ Group",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://cdn.nrjaudio.fm/audio1/fr/30601/mp3_128.mp3?origine=fluxradios"
-    ]
-  },
-  {
-    "id": "user:952edc87-2da1-4cb4-a98d-039d7d3838a6",
-    "title": "FR | Rire & Chansons",
-    "websiteUrl": "http://www.rireetchansons.fr/",
-    "tags": [
-      "NRJ Group",
-      "France - Nationale"
-    ],
-    "sources": [
-      "http://cdn.nrjaudio.fm/audio1/fr/30401/mp3_128.mp3?origine=fluxradios"
-    ]
-  },
+
   {
     "id": "user:a24df41b-7e00-4455-8add-55a374d6d7a7",
     "title": "BE | Chérie FM Belgique",

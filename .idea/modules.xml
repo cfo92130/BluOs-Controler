@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyApplicationNetRadio.iml" filepath="$PROJECT_DIR$/MyApplicationNetRadio.iml" group="MyApplicationNetRadio" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MyApplicationNetRadio/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BluOs_Controler.iml" filepath="$PROJECT_DIR$/.idea/modules/BluOs_Controler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BluOs_Controler.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BluOs_Controler.app.iml" />
     </modules>
   </component>
 </project>
