@@ -46,12 +46,12 @@ class Fragment_Radio_List : androidx.fragment.app.Fragment() {
 
     private fun initDataset(viewModel: MainViewModel ) {
 
-        val BluOsInstance = context?.let { BluOs(it) }
+        val BluOsInstance = BluOs()
         println("BluOsInstance"+BluOsInstance)
         runBlocking {
             val job = GlobalScope.launch {
                 if (BluOsInstance != null) {
-                    BluOsInstance.BluOsBrowseAlbum()
+                    BluOsInstance.BrowseAlbum()
                     viewModel.datasetAlbum = BluOsInstance.datasetAlbum
                 }
             }

@@ -67,5 +67,6 @@ class MainActivity : AppCompatActivity() {
         val TAG = "MainActivity"
         var CurrentSelectView : View? = null
         var SelectedAlbum = 0
+
     }
 }

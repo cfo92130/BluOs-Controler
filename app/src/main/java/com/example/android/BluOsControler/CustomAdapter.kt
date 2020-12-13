@@ -16,11 +16,18 @@
 
 package com.example.android.BluOsControler
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.android.synthetic.main.fragment_reader.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 
 /**
@@ -39,6 +46,8 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
     class ViewHolder(v: View, myViewModel: MainViewModel)  : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
         var album: TextView
         var artist: TextView
+        var art: ImageView
+        var BluOsInstance = BluOs()
 
         init {
             // Define click listener for the ViewHolder's View.
@@ -49,6 +58,7 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
               }
             album = v.findViewById(R.id.album)
             artist = v.findViewById(R.id.artist)
+            art = v.findViewById(R.id.imageView)
         }
     }
 
@@ -67,6 +77,14 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
         // with that element
         viewHolder.album.text = dataSet[position].title
         viewHolder.artist.text = dataSet[position].artist
+        runBlocking {
+            val job = GlobalScope.launch {
+                var art = viewHolder.BluOsInstance.GetImage("Qobuz","/Artwork?service=Qobuz&albumid="+dataSet[position].albumId)
+                viewHolder.art.setImageBitmap(art)
+            }
+            job.join()
+        }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
