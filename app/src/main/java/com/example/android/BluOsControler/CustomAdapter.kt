@@ -27,6 +27,8 @@ import kotlinx.android.synthetic.main.fragment_reader.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 import kotlin.concurrent.thread
 
 
@@ -48,6 +50,7 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
         var artist: TextView
         var art: ImageView
         var BluOsInstance = BluOs()
+
 
         init {
             // Define click listener for the ViewHolder's View.
@@ -77,14 +80,15 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
         // with that element
         viewHolder.album.text = dataSet[position].title
         viewHolder.artist.text = dataSet[position].artist
-        runBlocking {
-            val job = GlobalScope.launch {
-                var art = viewHolder.BluOsInstance.GetImage("Qobuz","/Artwork?service=Qobuz&albumid="+dataSet[position].albumId)
-                viewHolder.art.setImageBitmap(art)
+        if ( dataSet[position].art == null ) {
+            runBlocking {
+                val job = GlobalScope.launch {
+                    dataSet[position].art =  viewHolder.BluOsInstance.GetImage("Qobuz", "/Artwork?service=Qobuz&albumid=" + dataSet[position].albumId)
+                }
+                job.join()
             }
-            job.join()
         }
-
+        viewHolder.art.setImageBitmap(dataSet[position].art)
     }
 
     // Return the size of your dataset (invoked by the layout manager)
