@@ -14,22 +14,17 @@
 * limitations under the License.
 */
 
-package com.example.android.BluOsControler
+package com.example.android.bluOsControler
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import kotlinx.android.synthetic.main.fragment_reader.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.lang.Boolean.FALSE
-import java.lang.Boolean.TRUE
-import kotlin.concurrent.thread
 
 
 /**
@@ -37,7 +32,7 @@ import kotlin.concurrent.thread
  * Initialize the dataset of the Adapter.
  * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
  */
-class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel ) :
+class CustomAdapter(private val dataSet: MutableList<Album>, myviewModel: MainViewModel ) :
         androidx.recyclerview.widget.RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     /**
@@ -51,13 +46,13 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
         var art: ImageView
         var BluOsInstance = BluOs()
 
-
         init {
             // Define click listener for the ViewHolder's View.
              v.setOnClickListener {
                     Log.d(TAG, "Element $adapterPosition clicked.")
                     MainActivity.SelectedAlbum = adapterPosition
                     myViewModel.selectedAlbum.postValue(adapterPosition.toString())
+                    // BluOsInstance.Play(myViewModel.datasetAlbum[adapterPosition].albumId)
               }
             album = v.findViewById(R.id.album)
             artist = v.findViewById(R.id.artist)
@@ -69,7 +64,7 @@ class CustomAdapter(private val dataSet: List<Album>, myviewModel: MainViewModel
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view.
         val v = LayoutInflater.from(viewGroup.context)
-                .inflate(R.layout.radio_detail, viewGroup, false)
+                .inflate(R.layout.album_detail, viewGroup, false)
         return ViewHolder(v, localViewModel)
     }
 

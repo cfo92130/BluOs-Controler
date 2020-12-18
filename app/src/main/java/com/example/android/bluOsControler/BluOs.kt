@@ -1,12 +1,7 @@
-package com.example.android.BluOsControler
+package com.example.android.bluOsControler
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.view.View
-import com.android.volley.Request
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.IOException
@@ -21,6 +16,9 @@ class BluOs() {
     var BluOsUrl = "http://${BluOsIP}:11000"
     var BluOsError = ""
     var AlbumTitre = ""
+    var albumId = ""
+    var songId = ""
+    var artistId = ""
     var Artist = ""
     var Song = ""
     var BluOsState = ""
@@ -30,11 +28,13 @@ class BluOs() {
     var Title1 = ""
     var Title2 = ""
     var Title3 = ""
+    var Etag = ""
     var ArtworkUrl = " "
     var Artwork : Bitmap? = null
-    var AlbumListXML = ""
     var datasetAlbum  = mutableListOf(Album("","","","","",""))
-
+    var datasetSong = mutableListOf(Song("","","","","","","","","",""))
+    var totlen = 100
+    var secs = 0
 
     fun Cmd(cmd : String ) {
         println("BluOs Cmd: " + cmd)
@@ -43,15 +43,18 @@ class BluOs() {
 
     fun Play(albumid : String ) {
         println("BluOs Play: " + albumid)
-        thread {  val response = URL(BluOsUrl+"/Add?service=Qobuz&playnow=1&albumid="+albumid).readText() }
+        thread {
+            val response1 = URL(BluOsUrl+"/Clear").readText()  // Clear Playlist first !
+            val response2 = URL(BluOsUrl+"/Add?service=Qobuz&playnow=1&albumid="+albumid).readText()
+        }
     }
 
-    fun BrowseAlbum() {
-        val favoriteUrl = "/Albums?service=Qobuz&browseIsFavouritesContext=1&category=FAVOURITES&start=30&end=100"
+    fun BrowseAlbum(favoriteUrl: String) {
+        // val favoriteUrl = "/Albums?service=Qobuz&browseIsFavouritesContext=1&category=FAVOURITES&end=100"
         println("BluOs Get Status : " + BluOsUrl + favoriteUrl)
         val response = URL(BluOsUrl+favoriteUrl).readText()
         println("response : "+response)
-        AlbumListXML = response
+        // AlbumListXML = response
         val factory = XmlPullParserFactory.newInstance()
         factory.isNamespaceAware = true
         val parser = factory.newPullParser()
@@ -88,12 +91,62 @@ class BluOs() {
 
     }
 
+    fun Playlist() {
+        val favoriteUrl = "/Playlist?start=0"
+        println("BluOs Get Playlist : " + BluOsUrl + favoriteUrl)
+        val response = URL(BluOsUrl+favoriteUrl).readText()
+        // println("response : "+response)
+        val factory = XmlPullParserFactory.newInstance()
+        factory.isNamespaceAware = true
+        val parser = factory.newPullParser()
+        parser.setInput(response.reader())
+        var eventType = parser.eventType
+        datasetSong.clear()
+        var newsong = Song("","","","","","","","","","")
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            val tagname = parser.name
+            when (eventType) {
+                XmlPullParser.START_TAG -> {
+                    if (tagname == "title")   {
+                        newsong.title = parser.nextText()
+                    }
+                    if (tagname == "art")  {
+                        newsong.art = parser.nextText()
+                    }
+                    if (tagname == "alb")  {
+                        newsong.alb = parser.nextText()
+                    }
+                    if (tagname == "fn")  {
+                        newsong.fn = parser.nextText()
+                    }
+                    if (tagname == "quality")  {
+                        newsong.quality = parser.nextText()
+                    }
+                    if (tagname == "song")  {
+                        newsong = Song("","","","","","","","","","")
+                        newsong.songId = parser.getAttributeValue(null, "songid");
+                        newsong.id = parser.getAttributeValue(null, "id");
+                        newsong.albumId = parser.getAttributeValue(null, "albumid");
+                        newsong.service = parser.getAttributeValue(null, "service");
+                        newsong.artistId = parser.getAttributeValue(null, "artistid");
+                    }
+                }
+                XmlPullParser.END_TAG -> {
+                    if (tagname == "song")  {
+                        datasetSong.add(newsong)
+                    }
+                }
+            }
+            eventType = parser.next()
+        }
+        //for (song in datasetSong) {println("SongId:"+song.songId+" Id:"+song.id+ " AlbumId:"+song.albumId+ " Service:"+song.service+ " ArtistId :"+song.artistId) }
+    }
 
     fun GetStatus() {
         println("BluOs Get Status : " + BluOsUrl + "/Status")
         val response = URL(BluOsUrl+"/Status").readText()
         //println("BluOs Get Status Out : " + response.toString())
-        var newArtworkUrl = ""
+        var newEtag = ""
         try {
             BluOsError = ""
             val factory = XmlPullParserFactory.newInstance()
@@ -102,23 +155,29 @@ class BluOs() {
             parser.setInput(response.reader())
             var eventType = parser.eventType
 
-            AlbumTitre = " "
-            Artist = " "
-            Song = " "
-            BluOsState = " "
-            StreamFormat = " "
-            Service = " "
-            Quality = " "
-            Title1 = " "
-            Title2 = " "
-            Title3 = " "
+            AlbumTitre = ""
+            Artist = ""
+            Song = ""
+            BluOsState = ""
+            StreamFormat = ""
+            Service = ""
+            Quality =  ""
+            Title1 = ""
+            Title2 = ""
+            Title3 = ""
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 val tagname = parser.name
                 when (eventType) {
                     XmlPullParser.START_TAG -> {
+                        if (tagname == "status") {
+                            newEtag = parser.getAttributeValue(null, "etag")
+                        }
                         if (tagname == "album") {
                             AlbumTitre = parser.nextText()
+                        }
+                        if (tagname == "song") {
+                            Song = parser.nextText()
                         }
                         if (tagname == "artist") {
                             Artist = parser.nextText()
@@ -144,8 +203,14 @@ class BluOs() {
                         if (tagname == "title3") {
                             Title3 = parser.nextText()
                         }
+                        if (tagname == "totlen") {
+                            totlen = parser.nextText().toInt()
+                        }
+                        if (tagname == "secs") {
+                            secs = parser.nextText().toInt()
+                        }
                         if (tagname == "image") {
-                            newArtworkUrl = parser.nextText()
+                            ArtworkUrl = parser.nextText()
                         }
                   }
                 }
@@ -156,9 +221,25 @@ class BluOs() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        if ( newArtworkUrl != ArtworkUrl) {
-            ArtworkUrl = newArtworkUrl
+
+        if (( newEtag != Etag) and (Service != "") ) {
+            println("New etag !")
+            Etag = newEtag
             Artwork = GetImage(Service, ArtworkUrl)
+            // Todo  Get the Playlist to find  artistid & albumid ...
+            Playlist()
+            albumId = ""
+            songId = ""
+            artistId = ""
+            for ( song in datasetSong ) {
+                if ( Song == song.id ) {
+                    albumId = song.albumId
+                    songId = song.songId
+                    artistId = song.artistId
+                }
+
+            }
+            println("SongId:"+songId+ " AlbumId:"+albumId+ " ArtistId :"+artistId)
         }
     }
 
@@ -175,11 +256,14 @@ class BluOs() {
                 println("Redirect location : "+location)
                 url = URL(location)
             }
-            if ( Service == "TuneIn") {
+            else if ( Service == "TuneIn") {
                 url = URL(Url)
             }
-            if ( Service == "USB") {
+            else if ( Service == "USB") {
                 url = URL(BluOsUrl + Url)
+            }
+            else {
+                return null
             }
             return BitmapFactory.decodeStream(url.openConnection().getInputStream())
         }

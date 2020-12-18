@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.android.BluOsControler
+package com.example.android.bluOsControler
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,43 +25,23 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class Fragment_Radio_List : androidx.fragment.app.Fragment() {
+class Fragment_Album_List : androidx.fragment.app.Fragment() {
 
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
 
        override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_radio_list,
+        val rootView = inflater.inflate(R.layout.fragment_album_list,
                 container, false).apply { tag = TAG}
 
         recyclerView = rootView.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, SPAN_COUNT)
         val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        initDataset(viewModel)
+        // initDataset(viewModel)
         recyclerView.adapter = CustomAdapter(viewModel.datasetAlbum, viewModel)
 
         return rootView
-    }
-
-    private fun initDataset(viewModel: MainViewModel ) {
-
-        val BluOsInstance = BluOs()
-        println("BluOsInstance"+BluOsInstance)
-        runBlocking {
-            val job = GlobalScope.launch {
-                if (BluOsInstance != null) {
-                    BluOsInstance.BrowseAlbum()
-                    viewModel.datasetAlbum = BluOsInstance.datasetAlbum
-                }
-            }
-            job.join()
-        }
-        //runBlocking {  delay(2000) }
-
-        for ( album in viewModel.datasetAlbum ) {
-            println("Artist:"+album.artist+" Album:"+album.title+" AlbumId:"+album.albumId+" ArtistId :"+album.artistId+" Date :"+album.date+" Qualitu :"+album.quality)
-        }
     }
 
     companion object {

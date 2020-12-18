@@ -10,7 +10,6 @@
     android:focusable="true"
     android:background="@drawable/grid_item_background"
     android:gravity="center_vertical"
-
     android:padding="4dp">
 
     <ImageView

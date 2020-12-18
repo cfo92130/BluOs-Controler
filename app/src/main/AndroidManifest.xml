@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.BluOsControler">
+    package="com.example.android.bluOsControler">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,12 +9,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="BluOs Controler"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name="com.example.android.BluOsControler.MainActivity">
+        android:theme="@style/Theme.AppCompat.Light"
+        android:usesCleartextTraffic="true">
+        <activity android:name="com.example.android.bluOsControler.DisplayInfoActivity"></activity>
+        <activity android:name="com.example.android.bluOsControler.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

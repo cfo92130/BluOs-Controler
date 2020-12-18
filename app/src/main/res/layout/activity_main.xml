@@ -13,7 +13,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sample_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,17 +23,18 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favoris" />
+            android:text="PLaying" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lecture" />
+            android:text="Favorites" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -41,57 +43,38 @@
     </com.google.android.material.tabs.TabLayout>
 
     <View
+        android:id="@+id/sep1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
         android:background="@android:color/darker_gray" />
 
     <ViewAnimator
         android:id="@+id/viewAnimator"
         android:layout_width="match_parent"
-        android:layout_height="550dp">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/recyclerView"
-            android:name="com.example.android.BluOsControler.Fragment_Radio_List"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sep1">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/readerView"
-            android:name="com.example.android.BluOsControler.ReaderFragment"
+            android:name="com.example.android.bluOsControler.ReaderFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <ScrollView
-            style="@style/Widget.SampleMessageTile"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-            <TextView
-                style="@style/Widget.SampleMessage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/horizontal_page_margin"
-                android:paddingTop="@dimen/vertical_page_margin"
-                android:paddingRight="@dimen/horizontal_page_margin"
-                android:paddingBottom="@dimen/vertical_page_margin"
-                android:text="@string/intro_message" />
-        </ScrollView>
-
-
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </androidx.fragment.app.FragmentContainerView>
     </ViewAnimator>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/radio_fragment"
-        android:name="com.example.android.BluOsControler.Radio_Fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

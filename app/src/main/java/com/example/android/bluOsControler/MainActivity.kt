@@ -15,15 +15,17 @@
 */
 
 
-package com.example.android.BluOsControler
+package com.example.android.bluOsControler
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.ViewAnimator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        tabLayout.addOnTabSelectedListener( object: TabLayout.OnTabSelectedListener {
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 // get the current selected tab's position and replace the View accordingly
-                println("Tab position = "+ tab.position )
+                println("Tab position = " + tab.position)
                 val output = findViewById<ViewAnimator>(R.id.viewAnimator) as ViewAnimator
                 output.displayedChild = tab.position
             }
@@ -46,7 +48,35 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
-        //initializeLogging();
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        val BluOsInstance = BluOs()
+        val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val nameObserver = Observer<String> { newName ->
+            println("New Album to play =$newName")
+            if (newName != "na") {
+                println("Artist =" + viewModel.datasetAlbum[newName.toInt()].artist)
+                println("Album  =" + viewModel.datasetAlbum[newName.toInt()].title)
+                BluOsInstance.Play(viewModel.datasetAlbum[newName.toInt()].albumId)
+                // Display Now Playing Tab
+                tabLayout.getTabAt(0)?.select()
+            }
+        }
+        viewModel.selectedAlbum.observe(this, nameObserver)
+
+        // Initialize Album list with Favorite
+        thread {
+            BluOsInstance.BrowseAlbum("/Albums?service=Qobuz&browseIsFavouritesContext=1&category=FAVOURITES&end=100")
+            viewModel.datasetAlbum = BluOsInstance.datasetAlbum
+            for (album in viewModel.datasetAlbum) {
+                println("Artist:" + album.artist + " Album:" + album.title + " AlbumId:" + album.albumId + " ArtistId :" + album.artistId + " Date :" + album.date + " Qualitu :" + album.quality)
+            }
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, Fragment_Album_List())
+                    .commit()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -62,11 +92,7 @@ class MainActivity : AppCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
-
     companion object {
-        val TAG = "MainActivity"
-        var CurrentSelectView : View? = null
         var SelectedAlbum = 0
-
     }
 }
