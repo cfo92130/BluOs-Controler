@@ -35,24 +35,18 @@ import kotlinx.coroutines.runBlocking
 class CustomAdapter(private val dataSet: MutableList<Album>, myviewModel: MainViewModel ) :
         androidx.recyclerview.widget.RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    /**
-     * Provide a reference to the type of views that you are using (custom ViewHolder)
-     */
-    val localViewModel = myviewModel
+    private val localViewModel = myviewModel
 
-    class ViewHolder(v: View, myViewModel: MainViewModel)  : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
+    class ViewHolder(v: View, myViewModel: MainViewModel, mydataSet : MutableList<Album>)  : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
         var album: TextView
         var artist: TextView
         var art: ImageView
-        var BluOsInstance = BluOs()
-
+        val bluOsInstance = BluOs()
         init {
             // Define click listener for the ViewHolder's View.
              v.setOnClickListener {
                     Log.d(TAG, "Element $adapterPosition clicked.")
-                    MainActivity.SelectedAlbum = adapterPosition
-                    myViewModel.selectedAlbum.postValue(adapterPosition.toString())
-                    // BluOsInstance.Play(myViewModel.datasetAlbum[adapterPosition].albumId)
+                    myViewModel.selectedAlbumId.postValue(mydataSet[adapterPosition].albumId)
               }
             album = v.findViewById(R.id.album)
             artist = v.findViewById(R.id.artist)
@@ -62,10 +56,9 @@ class CustomAdapter(private val dataSet: MutableList<Album>, myviewModel: MainVi
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view.
         val v = LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.album_detail, viewGroup, false)
-        return ViewHolder(v, localViewModel)
+        return ViewHolder(v, localViewModel, dataSet)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -78,7 +71,7 @@ class CustomAdapter(private val dataSet: MutableList<Album>, myviewModel: MainVi
         if ( dataSet[position].art == null ) {
             runBlocking {
                 val job = GlobalScope.launch {
-                    dataSet[position].art =  viewHolder.BluOsInstance.GetImage("Qobuz", "/Artwork?service=Qobuz&albumid=" + dataSet[position].albumId)
+                    dataSet[position].art =  viewHolder.bluOsInstance.getImage("Qobuz", "/Artwork?service=Qobuz&albumid=" + dataSet[position].albumId)
                 }
                 job.join()
             }

@@ -20,14 +20,15 @@ import kotlin.concurrent.timerTask
 
 class ReaderFragment : Fragment() {
 
-    lateinit var BluOsInstance: BluOs
-    var TimerGetStatus = Timer()
+    lateinit var bluOsStatus: BluOsStatus
+    lateinit var bluOsInstance: BluOs
+    var timerGetStatus = Timer()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_reader, container, false)
-
-        BluOsInstance = BluOs()
+        bluOsStatus = BluOsStatus()
+        bluOsInstance = BluOs()
 
         // Set SeekBar Color
         val seek = rootView.findViewById<SeekBar>(R.id.seekBar)
@@ -37,63 +38,54 @@ class ReaderFragment : Fragment() {
 
         // Define Buttons actions
         val button1 = rootView.findViewById<Button>(R.id.buttonPrevious)
-        button1.setOnClickListener { BluOsInstance.Cmd("/Back") }
+        button1.setOnClickListener { bluOsInstance.cmd("/Back") }
 
         val button2 = rootView.findViewById<Button>(R.id.buttonNext)
-        button2.setOnClickListener { BluOsInstance.Cmd("/Skip") }
+        button2.setOnClickListener { bluOsInstance.cmd("/Skip") }
 
         val button3 = rootView.findViewById<Button>(R.id.buttonPlay)
         button3.setOnClickListener {
             println("Hi its Play")
-            if (BluOsInstance.BluOsState != "play") {
-                BluOsInstance.Cmd("/Play")
+            if (bluOsStatus.BluOsState != "play") {
+                bluOsInstance.cmd("/Play")
             } else {
-                BluOsInstance.Cmd("/Pause")
+                bluOsInstance.cmd("/Pause")
             }
         }
 
         val button4 = rootView.findViewById<Button>(R.id.button)
-        button4.setOnClickListener { thread {  BluOsInstance.Playlist() } }
+        button4.setOnClickListener { thread {  bluOsInstance.playList() } }
 
-        rootView.findViewById<Button>(R.id.albuminfo).setOnClickListener{ println("Albumid:"+BluOsInstance.albumId )
+        rootView.findViewById<Button>(R.id.albuminfo).setOnClickListener{ println("Albumid:"+ bluOsStatus.albumId )
             startActivity(context?.let {
                 it1 -> DisplayInfoActivity.newIntent(it1,
-                    "http://192.168.1.73:11000/Info?service=Qobuz&albumid=" + BluOsInstance.albumId,
-                    BluOsInstance.Title2,
-                    BluOsInstance.Title3)
+                    "http://192.168.1.73:11000/Info?service=Qobuz&albumid=" + bluOsStatus.albumId,
+                    bluOsStatus.Title2,
+                    bluOsStatus.Title3)
             })
         }
 
         rootView.findViewById<Button>(R.id.artistinfo).setOnClickListener{
             startActivity(context?.let {
                 it1 -> DisplayInfoActivity.newIntent(it1,
-                    "http://192.168.1.73:11000/Info?service=Qobuz&service=Qobuz&artistid=" + BluOsInstance.artistId,
-                    BluOsInstance.Title2,
+                    "http://192.168.1.73:11000/Info?service=Qobuz&service=Qobuz&artistid=" + bluOsStatus.artistId,
+                    bluOsStatus.Title2,
                     "")
             })
         }
         rootView.findViewById<Button>(R.id.songinfo).setOnClickListener{
             startActivity(context?.let {
                 it1 -> DisplayInfoActivity.newIntent(it1,
-                    "http://192.168.1.73:11000/Info?service=Qobuz&songid=" + BluOsInstance.songId,
-                    BluOsInstance.Title2,
-                    BluOsInstance.Title3+" "+BluOsInstance.Title1)
+                    "http://192.168.1.73:11000/Info?service=Qobuz&songid=" + bluOsStatus.songId,
+                    bluOsStatus.Title2,
+                    bluOsStatus.Title3+" "+ bluOsStatus.Title1)
             })
         }
 
+        // Display Albums for an Artist
         rootView.findViewById<Button>(R.id.artist).setOnClickListener{
-            thread {
                 val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-                BluOsInstance.BrowseAlbum("/Albums?service=Qobuz&artistid="+BluOsInstance.artistId)
-                viewModel.datasetAlbum = BluOsInstance.datasetAlbum
-                for (album in viewModel.datasetAlbum) {
-                    println("Artist:" + album.artist + " Album:" + album.title + " AlbumId:" + album.albumId + " ArtistId :" + album.artistId + " Date :" + album.date + " Qualitu :" + album.quality)
-                }
-                activity?.supportFragmentManager
-                        ?.beginTransaction()
-                        ?.replace(R.id.fragment_container, Fragment_Album_List())
-                        ?.commit()
-            }
+            viewModel.selectedArtistId.postValue(bluOsStatus.artistId)
         }
 
         return rootView
@@ -102,38 +94,38 @@ class ReaderFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        TimerGetStatus = Timer()
-        TimerGetStatus.schedule(timerTask {
-            BluOsInstance.GetStatus()
+        timerGetStatus = Timer()
+        timerGetStatus.schedule(timerTask {
+            bluOsStatus = bluOsInstance.getStatus(bluOsStatus)
             activity!!.runOnUiThread { UIRefresh() }
         }, 1000, 2000)
     }
 
     override fun onPause() {
         super.onPause()
-        TimerGetStatus.cancel()
+        timerGetStatus.cancel()
     }
 
     fun UIRefresh () {
         // artist.text = "Artist : "+BluOsInstance.Artist
         // album.text = "Album : "+BluOsInstance.Album
         // song.text = "Song : "+ BluOsInstance.Song
-        bluOsStatus.text = BluOsInstance.BluOsState
-        if (BluOsInstance.BluOsState != "play") {
+        bluOsState.text = bluOsStatus.BluOsState
+        if (bluOsStatus.BluOsState != "play") {
             buttonPlay.foreground = ContextCompat.getDrawable(this.requireContext(), android.R.drawable.ic_media_play)
         } else {
             buttonPlay.foreground = ContextCompat.getDrawable(this.requireContext(), android.R.drawable.ic_media_pause)
         }
-        streamFormat.text = BluOsInstance.StreamFormat
-        service.text = BluOsInstance.Service
-        quality.text = BluOsInstance.Quality
-        song.text = BluOsInstance.Title1
-        artist.text = BluOsInstance.Title2
-        album.text = BluOsInstance.Title3
-        seekBar.max = BluOsInstance.totlen
-        seekBar.progress = BluOsInstance.secs
+        streamFormat.text = bluOsStatus.StreamFormat
+        service.text = bluOsStatus.Service
+        quality.text = bluOsStatus.Quality
+        song.text = bluOsStatus.Title1
+        artist.text = bluOsStatus.Title2
+        album.text = bluOsStatus.Title3
+        seekBar.max = bluOsStatus.totlen
+        seekBar.progress = bluOsStatus.secs
         // artWorkUrl.text = "ArtWorkUrl : "+BluOsInstance.ArtworkUrl
-        imageView.setImageBitmap(BluOsInstance.Artwork)
+        imageView.setImageBitmap(bluOsStatus.Artwork)
     }
 
 }

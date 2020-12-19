@@ -25,9 +25,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class Fragment_Album_List : androidx.fragment.app.Fragment() {
+class Fragment_Album_List(mydataSet : MutableList<Album>) : androidx.fragment.app.Fragment() {
 
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
+    private var dataSet = mydataSet
 
        override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -39,8 +40,8 @@ class Fragment_Album_List : androidx.fragment.app.Fragment() {
         recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, SPAN_COUNT)
         val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         // initDataset(viewModel)
-        recyclerView.adapter = CustomAdapter(viewModel.datasetAlbum, viewModel)
-
+        //recyclerView.adapter = CustomAdapter(viewModel.datasetAlbum, viewModel)
+       recyclerView.adapter = CustomAdapter(dataSet, viewModel)
         return rootView
     }
 
