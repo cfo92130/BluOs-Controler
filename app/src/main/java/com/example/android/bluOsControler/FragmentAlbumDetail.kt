@@ -32,8 +32,8 @@ import kotlinx.coroutines.runBlocking
  * Initialize the dataset of the Adapter.
  * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
  */
-class CustomAdapter(private val dataSet: MutableList<Album>, myviewModel: MainViewModel ) :
-        androidx.recyclerview.widget.RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class FragmentAlbumDetail(private val dataSet: MutableList<Album>, myviewModel: MainViewModel ) :
+        androidx.recyclerview.widget.RecyclerView.Adapter<FragmentAlbumDetail.ViewHolder>() {
 
     private val localViewModel = myviewModel
 
@@ -83,6 +83,6 @@ class CustomAdapter(private val dataSet: MutableList<Album>, myviewModel: MainVi
     override fun getItemCount() = dataSet.size
 
     companion object {
-        private val TAG = "CustomAdapter"
+        private const val TAG = "CustomAdapter"
     }
 }

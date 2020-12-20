@@ -54,37 +54,42 @@ class ReaderFragment : Fragment() {
         }
 
         val button4 = rootView.findViewById<Button>(R.id.button)
-        button4.setOnClickListener { thread {  bluOsInstance.playList() } }
+        button4.setOnClickListener {
+            val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+            viewModel.selectedBrowseKey.postValue("Qobuz:")
+        }
 
-        rootView.findViewById<Button>(R.id.albuminfo).setOnClickListener{ println("Albumid:"+ bluOsStatus.albumId )
-            startActivity(context?.let {
-                it1 -> DisplayInfoActivity.newIntent(it1,
-                    "http://192.168.1.73:11000/Info?service=Qobuz&albumid=" + bluOsStatus.albumId,
-                    bluOsStatus.Title2,
-                    bluOsStatus.Title3)
+
+        rootView.findViewById<Button>(R.id.albuminfo).setOnClickListener {
+            println("Albumid:" + bluOsStatus.albumId)
+            startActivity(context?.let { it1 ->
+                DisplayInfoActivity.newIntent(it1,
+                        "http://192.168.1.73:11000/Info?service=Qobuz&albumid=" + bluOsStatus.albumId,
+                        bluOsStatus.Title2,
+                        bluOsStatus.Title3)
             })
         }
 
-        rootView.findViewById<Button>(R.id.artistinfo).setOnClickListener{
-            startActivity(context?.let {
-                it1 -> DisplayInfoActivity.newIntent(it1,
-                    "http://192.168.1.73:11000/Info?service=Qobuz&service=Qobuz&artistid=" + bluOsStatus.artistId,
-                    bluOsStatus.Title2,
-                    "")
+        rootView.findViewById<Button>(R.id.artistinfo).setOnClickListener {
+            startActivity(context?.let { it1 ->
+                DisplayInfoActivity.newIntent(it1,
+                        "http://192.168.1.73:11000/Info?service=Qobuz&service=Qobuz&artistid=" + bluOsStatus.artistId,
+                        bluOsStatus.Title2,
+                        "")
             })
         }
-        rootView.findViewById<Button>(R.id.songinfo).setOnClickListener{
-            startActivity(context?.let {
-                it1 -> DisplayInfoActivity.newIntent(it1,
-                    "http://192.168.1.73:11000/Info?service=Qobuz&songid=" + bluOsStatus.songId,
-                    bluOsStatus.Title2,
-                    bluOsStatus.Title3+" "+ bluOsStatus.Title1)
+        rootView.findViewById<Button>(R.id.songinfo).setOnClickListener {
+            startActivity(context?.let { it1 ->
+                DisplayInfoActivity.newIntent(it1,
+                        "http://192.168.1.73:11000/Info?service=Qobuz&songid=" + bluOsStatus.songId,
+                        bluOsStatus.Title2,
+                        bluOsStatus.Title3 + " " + bluOsStatus.Title1)
             })
         }
 
         // Display Albums for an Artist
-        rootView.findViewById<Button>(R.id.artist).setOnClickListener{
-                val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        rootView.findViewById<Button>(R.id.artist).setOnClickListener {
+            val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
             viewModel.selectedArtistId.postValue(bluOsStatus.artistId)
         }
 
@@ -106,7 +111,7 @@ class ReaderFragment : Fragment() {
         timerGetStatus.cancel()
     }
 
-    fun UIRefresh () {
+    fun UIRefresh() {
         // artist.text = "Artist : "+BluOsInstance.Artist
         // album.text = "Album : "+BluOsInstance.Album
         // song.text = "Song : "+ BluOsInstance.Song

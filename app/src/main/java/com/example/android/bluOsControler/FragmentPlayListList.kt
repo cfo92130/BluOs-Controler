@@ -21,11 +21,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
-class Fragment_Album_List(mydataSet : MutableList<Album>) : androidx.fragment.app.Fragment() {
+class FragmentPlayListList(mydataSet : MutableList<PlayListItem>) : androidx.fragment.app.Fragment() {
 
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     private var dataSet = mydataSet
@@ -33,21 +30,19 @@ class Fragment_Album_List(mydataSet : MutableList<Album>) : androidx.fragment.ap
        override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_album_list,
-                container, false).apply { tag = TAG}
+           val rootView = inflater.inflate(R.layout.fragment_browse_list, container, false).apply { tag = TAG}
 
-        recyclerView = rootView.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, SPAN_COUNT)
-        val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        // initDataset(viewModel)
-        //recyclerView.adapter = CustomAdapter(viewModel.datasetAlbum, viewModel)
-       recyclerView.adapter = CustomAdapter(dataSet, viewModel)
+           recyclerView = rootView.findViewById(R.id.recyclerView)
+           recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, SPAN_COUNT)
+           val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+           recyclerView.adapter = FragmentPlayListDetail(dataSet, viewModel)
+
         return rootView
     }
 
     companion object {
         private const val TAG = "RecyclerViewFragment"
-        private const val SPAN_COUNT = 2
+        private const val SPAN_COUNT = 1
     }
 }
 
