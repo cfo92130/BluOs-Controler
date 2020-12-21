@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
 
@@ -35,13 +36,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        // val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        //val viewAnimator = findViewById<ViewAnimator>(R.id.viewAnimator) as ViewAnimator
+        val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 // get the current selected tab's position and replace the View accordingly
                 println("Tab position = " + tab.position)
-                val output = findViewById<ViewAnimator>(R.id.viewAnimator) as ViewAnimator
-                output.displayedChild = tab.position
+                // val output = findViewById<ViewAnimator>(R.id.viewAnimator) as ViewAnimator
+                if (tab.position != 3) {
+                    viewAnimator.displayedChild = tab.position
+                } else {
+                    viewModel.selectedBrowseKey.postValue("Qobuz:")
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -51,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         // Observe the LiveData selectAlbumId and Play it
         viewModel.selectedAlbumId.observe(this,
@@ -60,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                     val bluOsInstance = BluOs()
                     if (albumId != "na") bluOsInstance.play(albumId)
                     tabLayout.getTabAt(0)?.select()
+                    // viewAnimator.displayedChild = 0
                 }
         )
 
