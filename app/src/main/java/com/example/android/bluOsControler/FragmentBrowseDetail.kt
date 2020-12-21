@@ -36,7 +36,9 @@ class FragmentBrowseDetail(private val dataSet: MutableList<Item>, myViewModel: 
             // Define click listener for the ViewHolder's View.
              v.setOnClickListener {
                  Log.d(TAG, "Element $adapterPosition clicked.")
+                 myViewModel.selectedTitle = myDataSet[adapterPosition].text
                  myViewModel.selectedBrowseKey.postValue(myDataSet[adapterPosition].browseKey)
+
              }
             text = v.findViewById(R.id.text)
             browseKey = v.findViewById(R.id.browseKey)

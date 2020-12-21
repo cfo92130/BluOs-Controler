@@ -20,7 +20,6 @@ package com.example.android.bluOsControler
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ViewAnimator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -66,12 +65,22 @@ class MainActivity : AppCompatActivity() {
                 Observer<String> { albumId ->
                     println("New Album to play =$albumId")
                     val bluOsInstance = BluOs()
-                    if (albumId != "na") bluOsInstance.play(albumId)
+                    if (albumId != "na") bluOsInstance.playAlbum(albumId)
                     tabLayout.getTabAt(0)?.select()
                     // viewAnimator.displayedChild = 0
                 }
         )
 
+        // Observe the LiveData selectPlayListId and Play it
+        viewModel.selectedPlayListId.observe(this,
+                Observer<String> { playListId ->
+                    println("New PlayList to play =$playListId")
+                    val bluOsInstance = BluOs()
+                    if (playListId != "na") bluOsInstance.playList(playListId)
+                    tabLayout.getTabAt(0)?.select()
+                    // viewAnimator.displayedChild = 0
+                }
+        )
         // Observe the LiveData selectedTab
         viewModel.selectedTab.observe(this,
                 Observer<Int> { newTab ->
@@ -93,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                             }
                             supportFragmentManager
                                     .beginTransaction()
-                                    .replace(R.id.fragment_container2, FragmentAlbumList(dataSetAlbum))
+                                    .replace(R.id.fragment_container2, FragmentAlbumList("Albums - "+dataSetAlbum[0].artist,dataSetAlbum))
                                     .commit()
                         }
                         // Display Now Playing Tab
@@ -117,13 +126,13 @@ class MainActivity : AppCompatActivity() {
                                 }
                                 supportFragmentManager
                                         .beginTransaction()
-                                        .replace(R.id.fragment_container2, FragmentAlbumList(dataSetAlbum))
+                                        .replace(R.id.fragment_container2, FragmentAlbumList("Album "+viewModel.selectedTitle, dataSetAlbum))
                                         .commit()
                             } else if (browseKey.startsWith("/Playlists?")) {
                                 val dataSetPlayList = bluOsInstance.browsePlayList(browseKey)
                                 supportFragmentManager
                                         .beginTransaction()
-                                        .replace(R.id.fragment_container2, FragmentPlayListList(dataSetPlayList))
+                                        .replace(R.id.fragment_container2, FragmentPlayListList("Playlist "+viewModel.selectedTitle, dataSetPlayList))
                                         .commit()
                             } else {
                                 val dataSetItem = bluOsInstance.browse(browseKey)
@@ -132,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                                 }
                                 supportFragmentManager
                                         .beginTransaction()
-                                        .replace(R.id.fragment_container2, FragmentBrowseList(dataSetItem))
+                                        .replace(R.id.fragment_container2, FragmentBrowseList(viewModel.selectedTitle,dataSetItem))
                                         .commit()
                             }
                         }
@@ -151,7 +160,7 @@ class MainActivity : AppCompatActivity() {
             }
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.fragment_container, FragmentAlbumList(dataSetAlbum))
+                    .replace(R.id.fragment_container, FragmentAlbumList("Favorites", dataSetAlbum))
                     .commit()
         }
     }

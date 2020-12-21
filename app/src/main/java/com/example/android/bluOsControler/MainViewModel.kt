@@ -65,6 +65,9 @@ class MainViewModel : ViewModel() {
     // var datasetAlbum =  mutableListOf(Album("","","","","",""))
     val selectedAlbumId: MutableLiveData<String> = MutableLiveData("na")
     val selectedArtistId: MutableLiveData<String> = MutableLiveData("na")
+    val selectedPlayListId: MutableLiveData<String> = MutableLiveData("na")
     val selectedBrowseKey: MutableLiveData<String> = MutableLiveData("na")
     val selectedTab: MutableLiveData<Int> = MutableLiveData(0)
+    var selectedTitle : String = " Title"
+
 }

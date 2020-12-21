@@ -19,7 +19,7 @@ class BluOs {
         thread { URL(bluOsUrl + cmd).readText() }
     }
 
-    fun play(albumId: String) {
+    fun playAlbum(albumId: String) {
         println("BluOs Play: $albumId")
         thread {
             URL("$bluOsUrl/Clear").readText()  // Clear Playlist first !
@@ -27,6 +27,13 @@ class BluOs {
         }
     }
 
+    fun playList(playListId: String) {
+        println("BluOs Play: $playListId")
+        thread {
+            URL("$bluOsUrl/Clear").readText()  // Clear Playlist first !
+            URL("$bluOsUrl/Add?service=Qobuz&playnow=1&playlistid=$playListId").readText()
+        }
+    }
     fun browsePlayList(favoriteUrl: String): MutableList<PlayListItem> {
         val dataSetItem = mutableListOf(PlayListItem())
         println("BluOs Browse PlayList Status : $bluOsUrl$favoriteUrl")

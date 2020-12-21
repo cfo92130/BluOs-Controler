@@ -20,6 +20,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -29,16 +30,19 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:text="PLaying" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:text="Favorites" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:text="Browse" />
 
         <com.google.android.material.tabs.TabItem
@@ -76,11 +80,9 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </androidx.fragment.app.FragmentContainerView>
+            android:layout_height="match_parent" />
+
     </ViewAnimator>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

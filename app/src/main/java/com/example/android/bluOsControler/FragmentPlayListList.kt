@@ -20,22 +20,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_list.*
 
-class FragmentPlayListList(mydataSet : MutableList<PlayListItem>) : androidx.fragment.app.Fragment() {
+class FragmentPlayListList(title : String, myDataSet : MutableList<PlayListItem>) : androidx.fragment.app.Fragment() {
 
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
-    private var dataSet = mydataSet
+    private var dataSet = myDataSet
+    private var title = title
 
        override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-           val rootView = inflater.inflate(R.layout.fragment_browse_list, container, false).apply { tag = TAG}
+           val rootView = inflater.inflate(R.layout.fragment_list, container, false).apply { tag = TAG}
 
            recyclerView = rootView.findViewById(R.id.recyclerView)
            recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, SPAN_COUNT)
            val viewModel: MainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
            recyclerView.adapter = FragmentPlayListDetail(dataSet, viewModel)
+           rootView.findViewById<TextView>(R.id.title).text = title
 
         return rootView
     }

@@ -37,7 +37,7 @@ class FragmentAlbumDetail(private val dataSet: MutableList<Album>, myviewModel: 
 
     private val localViewModel = myviewModel
 
-    class ViewHolder(v: View, myViewModel: MainViewModel, mydataSet : MutableList<Album>)  : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
+    class ViewHolder(v: View, myViewModel: MainViewModel, myDataSet : MutableList<Album>)  : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
         var album: TextView
         var artist: TextView
         var art: ImageView
@@ -45,8 +45,10 @@ class FragmentAlbumDetail(private val dataSet: MutableList<Album>, myviewModel: 
         init {
             // Define click listener for the ViewHolder's View.
              v.setOnClickListener {
-                    Log.d(TAG, "Element $adapterPosition clicked.")
-                    myViewModel.selectedAlbumId.postValue(mydataSet[adapterPosition].albumId)
+                 Log.d(TAG, "Element $adapterPosition clicked.")
+                 myViewModel.selectedAlbumId.postValue(myDataSet[adapterPosition].albumId)
+                 myViewModel.selectedTitle = myDataSet[adapterPosition].artist+" "+myDataSet[adapterPosition].title
+
               }
             album = v.findViewById(R.id.album)
             artist = v.findViewById(R.id.artist)

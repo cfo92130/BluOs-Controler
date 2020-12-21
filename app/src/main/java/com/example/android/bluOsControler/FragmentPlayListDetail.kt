@@ -36,7 +36,8 @@ class FragmentPlayListDetail(private val dataSet: MutableList<PlayListItem>, myV
             // Define click listener for the ViewHolder's View.
              v.setOnClickListener {
                  Log.d(TAG, "Element $adapterPosition clicked.")
-                 // myViewModel.selectedBrowseKey.postValue(mydataSet[adapterPosition].browseKey)
+                 myViewModel.selectedPlayListId.postValue(myDataSet[adapterPosition].id)
+                 myViewModel.selectedTitle = myDataSet[adapterPosition].name
              }
             name = v.findViewById(R.id.name)
             description = v.findViewById(R.id.description)
