@@ -19,21 +19,22 @@ class BluOs {
         thread { URL(bluOsUrl + cmd).readText() }
     }
 
-    fun playAlbum(albumId: String) {
+    fun playAlbum(service: String, albumId: String) {
         println("BluOs Play: $albumId")
         thread {
             URL("$bluOsUrl/Clear").readText()  // Clear Playlist first !
-            URL("$bluOsUrl/Add?service=Qobuz&playnow=1&albumid=$albumId").readText()
+            URL("$bluOsUrl/Add?service=$service&playnow=1&albumid=$albumId").readText()
         }
     }
 
-    fun playList(playListId: String) {
+    fun playList(service: String, playListId: String) {
         println("BluOs Play: $playListId")
         thread {
             URL("$bluOsUrl/Clear").readText()  // Clear Playlist first !
-            URL("$bluOsUrl/Add?service=Qobuz&playnow=1&playlistid=$playListId").readText()
+            URL("$bluOsUrl/Add?service=$service&playnow=1&playlistid=$playListId").readText()
         }
     }
+
     fun browsePlayList(favoriteUrl: String): MutableList<PlayListItem> {
         val dataSetItem = mutableListOf(PlayListItem())
         println("BluOs Browse PlayList Status : $bluOsUrl$favoriteUrl")
@@ -45,7 +46,7 @@ class BluOs {
         parser.setInput(response.reader())
         var eventType = parser.eventType
         dataSetItem.clear()
-        var newItem = PlayListItem()
+        var newItem: PlayListItem
         while (eventType != XmlPullParser.END_DOCUMENT) {
             val tagName = parser.name
             when (eventType) {

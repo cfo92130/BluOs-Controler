@@ -17,7 +17,9 @@ class DisplayInfoActivity : AppCompatActivity() {
         supportActionBar?.title = intent.getStringExtra(INTENT_artist)
         supportActionBar?.subtitle = intent.getStringExtra(INTENT_album)
         val url = intent.getStringExtra(INTENT_url)
-        findViewById<WebView>(R.id.web).loadUrl(url)
+        if (url != null) {
+            findViewById<WebView>(R.id.web).loadUrl(url)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

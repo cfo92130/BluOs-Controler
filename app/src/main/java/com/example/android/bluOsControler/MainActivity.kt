@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 Observer<String> { albumId ->
                     println("New Album to play =$albumId")
                     val bluOsInstance = BluOs()
-                    if (albumId != "na") bluOsInstance.playAlbum(albumId)
+                    if (albumId != "na") bluOsInstance.playAlbum("Qobuz",albumId)
                     tabLayout.getTabAt(0)?.select()
                     // viewAnimator.displayedChild = 0
                 }
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 Observer<String> { playListId ->
                     println("New PlayList to play =$playListId")
                     val bluOsInstance = BluOs()
-                    if (playListId != "na") bluOsInstance.playList(playListId)
+                    if (playListId != "na") bluOsInstance.playList("Qobuz",playListId)
                     tabLayout.getTabAt(0)?.select()
                     // viewAnimator.displayedChild = 0
                 }
