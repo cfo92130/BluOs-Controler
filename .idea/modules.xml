@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BluOs_Controler.iml" filepath="$PROJECT_DIR$/.idea/modules/BluOs_Controler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BluOs_Controler.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BluOs_Controler.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BluOs-Controler.iml" filepath="$PROJECT_DIR$/.idea/modules/BluOs-Controler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BluOs-Controler.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BluOs-Controler.app.iml" />
     </modules>
   </component>
 </project>
