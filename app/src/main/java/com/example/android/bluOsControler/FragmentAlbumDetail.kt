@@ -40,6 +40,7 @@ class FragmentAlbumDetail(private val dataSet: MutableList<Album>, myviewModel: 
     class ViewHolder(v: View, myViewModel: MainViewModel, myDataSet : MutableList<Album>)  : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
         var album: TextView
         var artist: TextView
+        var date: TextView
         var art: ImageView
         val bluOsInstance = BluOs()
         init {
@@ -52,6 +53,7 @@ class FragmentAlbumDetail(private val dataSet: MutableList<Album>, myviewModel: 
               }
             album = v.findViewById(R.id.album)
             artist = v.findViewById(R.id.artist)
+            date = v.findViewById(R.id.date)
             art = v.findViewById(R.id.imageView)
         }
     }
@@ -70,6 +72,7 @@ class FragmentAlbumDetail(private val dataSet: MutableList<Album>, myviewModel: 
         // with that element
         viewHolder.album.text = dataSet[position].title
         viewHolder.artist.text = dataSet[position].artist
+        viewHolder.date.text = dataSet[position].date
         if ( dataSet[position].art == null ) {
             runBlocking {
                 val job = GlobalScope.launch {
